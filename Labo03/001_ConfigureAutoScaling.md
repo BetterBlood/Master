@@ -10,11 +10,11 @@
 
 * Networks (RTE-TABLE/SECURITY GROUP) set as at the end of the Labo2.
 * 1 AMI of your Drupal instance
-* 0 existing ec2 (even is in stopped state)
+* 0 existing ec2 (even is in a stopped state)
 * 1 RDS Database instance - started
 * 1 Elastic Load Balancer - started
 
-## Create a new launch configuration. 
+## Create a new launch template. 
 
 |Key|Value|
 |:--|:--|
@@ -32,26 +32,12 @@
 
 ```
 [INPUT]
-//cli command
-aws autoscaling create-launch-configuration \
-    --launch-configuration-name LT-DEVOPSTEAM10 \
-    --image-id $(aws ec2 describe-images \
-    --query "Images[?Name=='AMI_DRUPAL_DEVOPSTEAM10_LABO02_RDS'].ImageId" --output text) \
-    --instance-type t3.micro \
-    --security-groups $(aws ec2 describe-security-groups \
-    --query "SecurityGroups[?GroupName=='SG-PRIVATE-DRUPAL-DEVOPSTEAM10'].GroupId" --output text) \
-    --key-name CLD_KEY_DRUPAL_DEVOPSTEAM10 \
-    --associate-public-ip-address false \
-    --block-device-mappings "[{\"DeviceName\":\"/dev/xvda\",\"Ebs\":{\"VolumeSize\":10}}]" \
-    --instance-monitoring Enabled=true \
-    --no-ebs-optimized
-    --tags Key=Name,Value=LT-DEVOPSTEAM10
+//cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
 
 [OUTPUT]
-TODO
 ```
 
-## Create an auto scaling group
+## Create an autoscaling group
 
 * Choose launch template or configuration
 
@@ -82,22 +68,7 @@ TODO
 
 ```
 [INPUT]
-//cli command
-aws autoscaling create-auto-scaling-group \
-    --auto-scaling-group-name ASGRP_DEVOPSTEAM10 \
-    --launch-configuration-name ASGRP_DEVOPSTEAM10 \
-    --min-size 1 \
-    --max-size 4 \
-    --desired-capacity 1 \
-    --vpc-zone-identifier "subnet-02291f4084cacd8c9, subnet-06579a70777df8833" \
-    --health-check-type ELB \
-    --health-check-grace-period 10 \
-    --target-group-arns arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM10/49cb5841e91f6eeb \
-    --termination-policies "OldestLaunchConfiguration" \
-    --tags Key=Name,Value=AUTO_EC2_PRIVATE_DRUPAL_DEVOPSTEAM10 \
-    --new-instances-protected-from-scale-in \
-    --metrics CollectionEnabled=true
-    
+//cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
 
 [OUTPUT]
 ```
