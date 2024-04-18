@@ -56,7 +56,7 @@ Create a simple web application as follows.
    `HelloAppEngine` file. What does the code do?
 
    ```
-   //TODO
+   This servlet responds to HTTP GET requests on the "/hello" endpoint. It retrieves system properties related to the App Engine environment and Java runtime, such as the Java version and Java specification version.
    ```
 
 6. Note the annotation starting with `@WebServlet` in front of the
@@ -66,14 +66,14 @@ Create a simple web application as follows.
    `web.xml`. What information does it contain? And what is its use ?
 
    ```
-   //TODO
+    It contains the configuration of the web application. It specifies the welcome file of the application, which is index.jsp in this case.
    ```
 
 8. Inspect the Google App Engine configuration file
    `appengine-web.xml` in `webapp/WEB-INF`. What information does it contain?
 
    ```
-   //TODO
+    It specifies the runtime environment of the application, which is Java 8 in this case. It also specifies the logging configuration file (properties file) and the version of the application (1.0.0 by default). The application ID is also specified in this file.
    ```
 
 9. Edit the Google App Engine configuration file as follows:
@@ -85,7 +85,7 @@ Create a simple web application as follows.
     `index.jsp` spotted in `web.xml`. What is its use ?
 
     ```
-    //TODO
+    It is the welcome file of the application. It is the first file that is displayed when the application is accessed and uses html.
     ```
 
 ---
