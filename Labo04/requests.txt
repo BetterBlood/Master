@@ -1,0 +1,5 @@
+GET https://20240422t101650-dot-labgae-420715.ew.r.appspot.com/datastorewrite?_kind=book
+GET https://20240422t101650-dot-labgae-420715.ew.r.appspot.com/datastorewrite?_kind=book
+GET https://20240422t101650-dot-labgae-420715.ew.r.appspot.com/datastorewrite?_kind=book
+GET https://20240422t101650-dot-labgae-420715.ew.r.appspot.com/datastorewrite?_kind=book
+GET https://20240422t101650-dot-labgae-420715.ew.r.appspot.com/datastorewrite?_kind=book
