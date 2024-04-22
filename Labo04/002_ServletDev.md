@@ -88,3 +88,9 @@ Deliverables:
 ```
 //TODO - Copy a screenshot of the local and the App Engine console with the Datastore Viewer.
 ```
+Datastore Viewer in Localhost
+![local-datastore.png](local-datastore.png)
+
+Datastore Viewer in App Engine
+![engine-datastore.png](engine-datastore.png)
+```
