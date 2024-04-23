@@ -6,4 +6,7 @@
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
     <app-engine-apis>true</app-engine-apis>
+    <automatic-scaling>
+        <max-instances>4</max-instances>
+    </automatic-scaling>
 </appengine-web-app>
