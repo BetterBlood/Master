@@ -6,7 +6,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <groupId>ch.heigvd.cld.lab</groupId>
-  <artifactId>LabGAE</artifactId>
+  <artifactId>LabGAEDatastore</artifactId>
 
   <properties>
     <!-- uncomment if you wish to set your project here project- gcloud is used otherwise -->
