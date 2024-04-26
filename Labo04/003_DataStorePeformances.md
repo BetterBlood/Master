@@ -97,7 +97,6 @@ Plot:
 
   ```
   //TODO
-  // TODO ask if it is normal
   The first Servlet starts at around 6000 ms and drop until 10 seconds then finishes with low and stabilized latency. The second Servlet will start with a smaller latency, around 2000 ms and will peak at 10000 ms, drop slowly and finishes with low and stabilized latency.
   ```
 - Compare the response times shown by vegeta with the App Engine
@@ -105,9 +104,11 @@ Plot:
 
   ```
   //TODO
-  //TODO remove capture
   ![img_4.png](img_4.png)
   ![img_5.png](img_5.png)
+  
+  For the first and second servlet, we can notice that the response time is slower in the App Engine console than in vegeta and does not oscillate as much. 
+  This is because the App Engine console averages the response time over a longer period of time, while vegeta shows the response time of each request.
   ```
 
 In vegeta, we have the response time of the server, while in the App Engine console, we have the response time of the server and the time to get the data from the Datastore.
@@ -121,8 +122,6 @@ To get a sense of everything that is measured click on **Show resources not in u
 
 ```
 
-//TODO
-// check values
 In total, we have 6 resources used.
 ![img_6.png](img_6.png)
 - Cloud Firestore API Calls: It is the number of calls made to the Cloud Firestore API.
@@ -134,18 +133,13 @@ In total, we have 6 resources used.
 
 Cloud Firestore is the database used by the Datastore.
 
-Daily quota all undefined :( TODO ASK
-
 ```
 
 - Let's suppose you become suspicious that the algorithm for the automatic scaling of
 instances is not working correctly. Imagine a way in which the algorithm could be broken. Which measures shown in the console would you use to detect this failure?
 
 ```
-
-//TODO
 Check the number of instances used in the App Engine console. If the number of instances is not increasing or decreasing according to the number of requests or CPU usage, then the algorithm might be broken.
-TODO ASK for more details
 
 ```
 
