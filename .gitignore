@@ -23,8 +23,9 @@
 *.lst
 *.MF
 
-!/Labo04/LabGAE/.idea/
 /Labo04/LabGAE/.idea/
+/Labo04/Task001_LabGAE/.idea/
 !/Labo04/LabGAE/LabGAE.iml
-!/Labo04/LabGAE/LabGAE.iml
+/Labo04/Task001_LabGAE/LabGAE.iml
 !/Labo04/LabGAE/target/
+/Labo04/Task001_LabGAE/target/
