@@ -148,11 +148,11 @@ It also needs to be initialized with the following environment variables (check 
 
   * `API_ENDPOINT_URL`: URL where the API can be accessed e.g., <http://localhost:9000>
     * *What value must be set for this URL ?*
+    * It must be the URL of the API Service, which is `http://api-svc:8081` in this case.
 
 > Hint: remember that anything you define as a Service will be assigned a DOMAIN that is visible via DNS everywhere in the cluster and a PORT.
 
   * Deploy the Pod using `kubectl`.
-
 ### Verify the ToDo application
 
 Now you can verify the the ToDo application is working correctly by connecting to the Frontend Pod. As the Pod's IP address is only accessible from inside the cluster, we have to use a trick.

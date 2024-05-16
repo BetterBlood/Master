@@ -339,7 +339,7 @@ spec:
 Take a screenshot of the cluster details from the GKE console. Copy the output of the `kubectl describe` command to describe your load balancer once completely initialized.
 
 > // TODO
-
+> ![GKE Cluster](img/cluster-details.png)
 ```````
 // TODO object descriptions
 kubectl describe svc frontend-svc
