@@ -19,8 +19,8 @@ Converting a Pod to be managed by a Deployment is quite simple.
   * Use only 1 instance for the Redis-Server. Why?
 
     > // TODO
-> //TODO check answer
-> Because we are using a single Redis instance to store the data. If we have multiple instances, the data will be inconsistent.
+    > 
+    > Since Redis is a database, it is easier to manage the data consistency with only one instance.
   * Delete all application Pods (using `kubectl delete pod ...`) and replace them with deployment versions.
 
   * Verify that the application is still working and the Replica Sets are in place. (`kubectl get all`, `kubectl get pods`, `kubectl describe ...`)
@@ -45,34 +45,47 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
 
   * What happens if you delete a Frontend or API Pod? How long does it take for the system to react?
     > // TODO
-    > The system will automatically create a new pod to replace the deleted one. The new one is directly running.
+    > 
+    > The system will terminate the pod and then automatically create a new pod to replace the deleted one.
+    > 
+    > The new pod will be running in a few seconds.
     
   * What happens when you delete the Redis Pod?
 
     > // TODO
-    > Same as above, the system will automatically create a new pod to replace the deleted one.
-    > However, the data will be lost because the new pod is empty.
+    >
+    > Same as above, the system will terminate the pod and then automatically create a new pod to replace the deleted one.
+    > 
+    > However, the data will be lost because we create a new pod.
   * 
   * How can you change the number of instances temporarily to 3? Hint: look for scaling in the deployment documentation
 
     > // TODO
-    > kubectl scale deployment/<deployment-name> --replicas=3
-    > ex: kubectl scale deployment/api-deployment --replicas=3
+    > 
+    > `kubectl scale deployment/<deployment-name> --replicas=3`
+    > 
+    >ex: `kubectl scale deployment/api-deployment --replicas=3`
     
   * What autoscaling features are available? Which metrics are used?
 
     > // TODO
-    > Horizontal Pod Autoscaler automatically scales the number of pods in a replication controller, deployment, 
-    > replica set or stateful set based on observed CPU utilization.
-    
+    > 
+    > Horizontal Pod Autoscaler automatically scales the number of pods in a replication controller, deployment, replica set or stateful set based on observed average CPU utilization, average memory utilization or other custom metrics. 
+
   * How can you update a component? (see "Updating a Deployment" in the deployment documentation)
 
     > // TODO
-> kubectl set image deployment/<deployment-name> <container-name>=<new-image-name:tag>
-
+    > 
+    > `kubectl set image deployment/<deployment-name> <container-name>=<new-image-name:tag>`
+    
 ## Subtask 3.3 - Put autoscaling in place and load-test it
 
 On the GKE cluster deploy autoscaling on the Frontend with a target CPU utilization of 30% and number of replicas between 1 and 4. 
+ ```bash
+ kubectl autoscale deployment frontend-deployment --cpu-percent=30 --min=1 --max=4
+ echo "GET http://35.205.253.137/all" | vegeta attack -duration=30s -rate=100 | tee results.bin | vegeta report
+
+ ```
 
 Load-test using Vegeta (500 requests should be enough).
 
@@ -105,9 +118,8 @@ Load-test using Vegeta (500 requests should be enough).
 Document your observations in the lab report. Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report.
 
 > // TODO
->  kubectl autoscale deployment frontend-deployment --cpu-percent=30 --min=1 --max=4
-> echo "GET http://104.155.124.32" | vegeta attack -duration=30s -rate=50 | tee results.bin | vegeta report
-> cat results.bin | vegeta plot > plot.html
+> 
+> No difficulties, except that after deleting the redis pod from previous step, the database doesn't add new todo items.
 
 
 ```````sh

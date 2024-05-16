@@ -66,6 +66,7 @@ Now you can verify if the ToDo application is working correctly.
 Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report (if they are unchanged from the previous task just say so).
 
 > // TODO
+> No difficulties faced.
 
 ```````
 // TODO object descriptions
