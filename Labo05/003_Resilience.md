@@ -112,6 +112,30 @@ Document your observations in the lab report. Document any difficulties you face
 
 ```````sh
 // TODO autoscaling description
+kubectl describe hpa
+Name:                                                  frontend-deployment
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Thu, 16 May 2024 15:17:28 +0200
+Reference:                                             Deployment/frontend-deployment
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (0) / 30%
+Min replicas:                                          1
+Max replicas:                                          4
+Deployment pods:                                       1 current / 1 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:
+  Type     Reason                   Age   From                       Message
+  ----     ------                   ----  ----                       -------
+  Warning  FailedGetResourceMetric  21m   horizontal-pod-autoscaler  No recommendation
+  Normal   SuccessfulRescale        16m   horizontal-pod-autoscaler  New size: 1; reason: cpu resource utilization (percentage of request) below target
+
 ```````
 
 ```yaml
