@@ -140,12 +140,103 @@ Events:
 
 ```yaml
 # redis-deploy.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    app: todo
+    component: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo
+      component: redis
+  template:
+    metadata:
+      labels:
+        app: todo
+        component: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+              name: redis
+          args:
+            - redis-server
+            - --requirepass ccp2
+            - --appendonly yes
 ```
 
 ```yaml
 # api-deploy.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels:
+    app: todo
+    component: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo
+      component: api
+  template:
+    metadata:
+      labels:
+        app: todo
+        component: api
+    spec:
+      containers:
+        - name: api
+          image: icclabcna/ccp2-k8s-todo-api
+          ports:
+            - containerPort: 8081
+              name: http
+          env:
+            - name: REDIS_ENDPOINT
+              value: redis-svc
+            - name: REDIS_PWD
+              value: ccp2
+
 ```
 
 ```yaml
 # frontend-deploy.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: todo
+    component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: todo
+        component: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: icclabcna/ccp2-k8s-todo-frontend
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: API_ENDPOINT_URL
+              value: http://api-svc:8081
+          resources:
+            requests:
+              cpu: 10m
 ```
