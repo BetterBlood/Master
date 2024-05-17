@@ -57,7 +57,7 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
     > Same as above, the system will terminate the pod and then automatically create a new pod to replace the deleted one.
     > 
     > However, the data will be lost because we create a new pod.
-  * 
+  
   * How can you change the number of instances temporarily to 3? Hint: look for scaling in the deployment documentation
 
     > // TODO
