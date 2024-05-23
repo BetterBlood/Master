@@ -72,6 +72,31 @@ You can now initialize the Terraform state:
 //TODO
 [OUTPUT]
 ```bash
+Initializing the backend...
+
+Successfully configured the backend "local"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/google...
+- Installing hashicorp/google v5.30.0...
+- Installed hashicorp/google v5.30.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+
 ```
     
 * What files were created in the `terraform` directory? Make sure to look also at hidden files and directories (`ls -a`).
@@ -79,15 +104,35 @@ You can now initialize the Terraform state:
 //TODO
 [OUTPUT]
 ```bash
+.terraform, with the following structure
+.
+├── providers
+│   └── registry.terraform.io
+│       └── hashicorp
+│           └── google
+│               └── 5.30.0
+│                   └── linux_amd64
+│                       ├── LICENSE.txt
+│                       └── terraform-provider-google_v5.30.0_x5
+└── terraform.tfstate
+We can note that it contains 2 files, LICENSE.txt and terraform-provider-google_v5.30.0_x5
+
+Additionally, a file named .terraform.lock.hcl is created
+
 ```
 
 * What are they used for?
 
 //TODO
-|File/FolderName|Explanation|
-|:--|:--|
-|||
 
+| File/FolderName                                                                      | Explanation                                                                                                |
+|:-------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------|
+| .terraform.lock.hcl                                                                  | This file is used to record the provider selections made by Terraform. It is used to guarantee that        |
+| the same selections are made by default when running "terraform init" in the future. |                                                                                                            |
+| terraform.tfstate                                                                    | This file is used to store the state of the infrastructure managed by Terraform. It is used to keep        |
+| track of the resources that Terraform manages.                                       |                                                                                                            |
+| providers                                                                            | This folder contains the provider plugins that Terraform uses to interact with the cloud provider. In this |
+| case, it contains the Google Cloud provider plugin.                                  |                                                                                                            |
 
 * Check that your Terraform configuration is valid:
 
@@ -98,6 +143,7 @@ terraform validate
 //TODO
 [OUTPUT]
 ```bash
+Success! The configuration is valid.
 ```
 
 * Create an execution plan to preview the changes that will be made to your infrastructure and save it locally:
